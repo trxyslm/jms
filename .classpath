@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="bin" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path=".mip/WEB-INF/lib/mrc-1.0.1.jar" sourcepath=".mip/WEB-INF/lib/mrc-1.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="D:/javaUtils/jar/spring-2.5.6.jar"/>
+	<classpathentry kind="lib" path="D:/javaUtils/jar/apache-activemq-5.9.0/activemq-all-5.9.0.jar"/>
+	<classpathentry kind="lib" path="D:/javaUtils/jar/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/javaUtils/jar/xbean-spring-3.0.jar"/>
+	<classpathentry kind="lib" path="D:/javaUtils/jar/apache-activemq-5.9.0/lib/optional/activeio-core-3.1.4.jar"/>
+	<classpathentry kind="lib" path="D:/javaUtils/jar/derby-10.4.2.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

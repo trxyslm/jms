@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>com.onewaveinc</groupId>
+		<artifactId>mip-module</artifactId>
+		<version>1.0.3</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>webcache.message.processor</artifactId>
+	<packaging>mod</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>webcache.message.processor</name>
+	<url>http://www.sihuatech.com</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.onewaveinc</groupId>
+			<artifactId>mrc</artifactId>
+			<version>1.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- 依赖模块 -->
+
+		<!-- 第三方JAR包 -->
+	</dependencies>
+
+	<properties>
+		<module.source.encoding>UTF-8</module.source.encoding>
+		<maven.clover.encoding>UTF-8</maven.clover.encoding>
+		<module.tag>1.0.0-SNAPSHOT</module.tag>
+	</properties>
+</project>

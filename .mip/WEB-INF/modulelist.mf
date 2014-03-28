@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Module-List: mip.license/1.0.0+;
+Signature: iSFajmCJvExNVOLD6VOVy1cfP/11iFbSBLXZvIZMNQBqUXBo/aTx+fvUksy
+ Lk/Gt5p2GPHNc5s+mjrIKf/9B+7nP/N0zZKpPpMvYZOuyEVJVYT7dRSYhRln4vlzPcl4p
+ X56W8CbnRJYNMgQszUPJmcYZFxABvT0qXRV8Hh/r/A8=
+

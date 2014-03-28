@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Built-By: gmice
+Build-Jdk: 1.7.0
+Created-By: Apache Maven 3.0.4
+Main-Class: Main
+Archiver-Version: Plexus Archiver
+

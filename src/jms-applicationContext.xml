@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+         http://www.springframework.org/schema/context  
+         http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<bean id="broker" class="org.apache.activemq.xbean.BrokerFactoryBean">
+		<property name="config" value="classpath:activemq.xml" />
+		<property name="start" value="true" />
+	</bean>
+
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://localhost:61616" />
+	</bean>
+
+	<bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="MY.topic" />
+	</bean>
+
+	<bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="MY.queue" />
+	</bean>
+
+	<bean id="producerJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<bean class="org.springframework.jms.connection.SingleConnectionFactory">
+				<property name="targetConnectionFactory" ref="connectionFactory" />
+			</bean>
+		</property>
+		<property name="defaultDestination" ref="topicDestination" />
+		<property name="messageConverter" ref="userMessageConverter" />
+		<property name="explicitQosEnabled" value="true" /> <!-- deliveryMode, priority, timeToLive 的开关，要生效，必须配置为true，默认false-->  
+        <property name="deliveryMode" value="2" /> <!-- 发送模式  DeliveryMode.NON_PERSISTENT=1:非持久 ; DeliveryMode.PERSISTENT=2:持久-->
+        <property name="pubSubDomain" value="true" />  
+        <property name="sessionAcknowledgeMode" value="1" />   
+		<!-- 消息应答方式  
+        Session.AUTO_ACKNOWLEDGE  消息自动签收  
+        Session.CLIENT_ACKNOWLEDGE  客户端调用acknowledge方法手动签收  
+        Session.DUPS_OK_ACKNOWLEDGE 不必必须签收，消息可能会重复发送  
+        -->  
+	</bean>
+
+	<bean id="userMessageConverter" class="com.sihuatech.webcache.jms.UserMessageConverter" />
+
+	<bean id="messageListener"
+		class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<constructor-arg>
+			<bean class="com.sihuatech.webcache.jms.UserMessageConsumerImpl">
+				<!-- <property name="mailService" ref="mailService" /> -->
+			</bean>
+		</constructor-arg>
+		<property name="defaultListenerMethod" value="handleMessage" />
+		<property name="messageConverter" ref="userMessageConverter" />
+	</bean>
+
+	<bean id="listenerContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="concurrentConsumers" value="5" />
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="topicDestination" />
+		<property name="messageListener" ref="messageListener" />
+	</bean>
+
+	<bean id="userMessageProducerImpl" class="com.sihuatech.webcache.jms.UserMessageProducerImpl">
+		<property name="jmsTemplate">
+			<ref bean="producerJmsTemplate"/>
+		</property>
+	</bean>
+</beans>
